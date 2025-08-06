@@ -1,0 +1,30 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+
+# csv files 
+*.csv
+*.xlsx
+*.ipynb
+bash-try
+date-preprocessing
+generated
+learning-streamlit-venv
+
+date_preprocessing.py 
+die-roll-simulator.py
+hello*
+huge*
+PAT*
+table-exporer.py
+iris-explorer.py
+no*
+first-chatbot.py
