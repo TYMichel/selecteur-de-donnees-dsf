@@ -51,7 +51,7 @@ years = st.multiselect(
 
 
 extract_order = st.button("Extraire les données",
-                          "Lancer l'extraction des colonnes",
+                          help="Lancer l'extraction des colonnes",
                           use_container_width=True)
 
 #* Affiche  la dataFrame sélectionné
@@ -69,7 +69,22 @@ if file is not None:
           data = file,
           mime = "text/csv",
           icon=":material/download:",
-          use_container_width=True
+          use_container_width=True,
+          on_click="ignore"
      )
+     
+# Gestion des indésirables 
 
+st.info("Peut être ce que vous cherchez se trouve dans les données inclassables ?",
+        icon="💡")
 
+file2 = indesirable.to_csv().encode("utf-8")
+
+st.download_button(
+     "Télécharger les indésirables",
+     data=file2,
+     on_click="ignore",
+     mime="text/csv",
+     use_container_width=True,
+     icon=":material/download:"
+)
