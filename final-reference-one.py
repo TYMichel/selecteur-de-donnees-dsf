@@ -21,7 +21,13 @@ def chargement(n=1):
 
 
 
-st.title("Sélecteur des données DSF Normal")
+st.title("Sélecteur des données DSF")
+
+type_dsf = st.selectbox(
+     "Veuillez selectionner le type de DSF",
+     ["Système Normal","Système minimal de trésorerie","DSF des banques","DSF des sociétés d'assurance"] # liste  non exhaustive.
+)    
+
 st.divider()
 st.info("""A cause de problèmes en relation avec la taille du fichier, cette application utilise une
           une base de données réduite à 5000 lignes au lieu de 15 000.
