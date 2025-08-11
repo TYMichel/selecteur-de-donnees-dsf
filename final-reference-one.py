@@ -50,25 +50,26 @@ years = st.multiselect(
 )
 
 
-afficher_data = st.button("Afficher la sélection",
-                          type='primary',
-                          help="Afficher les colonnes et années **sélectionnées**",
+extract_order = st.button("Extraire les données",
+                          "Lancer l'extraction des colonnes",
                           use_container_width=True)
 
-
 #* Affiche  la dataFrame sélectionné
-if afficher_data:
-     all_data = pd.read_csv("final-ref-cleaned-years-sample-version.csv")
-     df = all_data[all_data["annee_exerciceClos"].isin(years)][cols]
-     st.dataframe(df)
-     
-st.divider()
+if extract_order:
+     with st.spinner("extraction des données."):
+          all_data = pd.read_csv("final-ref-cleaned-years-sample-version.csv")
+          df = all_data[all_data["annee_exerciceClos"].isin(years)][cols]
+          file = df.to_csv().encode("utf-8")
+else:
+     file = None 
 
-show_indesirable = st.button("Afficher les indésirables",
-                             help="Ce sont les lignes avec des dates illisibles",
-                             use_container_width=True
-                             )
+if file is not None:
+     st.download_button(
+          label = "Télécharger l'extrait",
+          data = file,
+          mime = "text/csv",
+          icon=":material/download:",
+          use_container_width=True
+     )
 
-if show_indesirable:
-     st.dataframe(indesirable)
-     st.write(f"Nombre d'indésirables: {indesirable.shape[0]}")
+
