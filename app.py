@@ -76,24 +76,12 @@ for table in tables:# une branche pour chaque table
      )
 with st.sidebar:
      selected_cols = tree_select(selection)
-     
+
 st.subheader("Récapitulatif de la sélection")
 st.dataframe(cols_to_df(colsToTableMatching,selected_cols["checked"]))
      
      
-st.subheader("Sélection des colonnes pour chaque tableau")
-st.divider()
-tabsTables = st.tabs(tables) # Toutes les tables sélectionnées 
-# présentent la liste de leurs colonnes.
-for idx in range(len(tables)):
-     with tabsTables[idx]:
-          st.multiselect(
-               "Veuillez sélectionner les colonnes de ce Tableau (obligatoire)",
-               # pour ne retenir que le numéro de tableau dans le nom selectionné. 
-               matchingJson[str(tables[idx][-2:]).strip()] # colonnes du tableau
-          )
-st.divider()
-     
+
 
 data,indesirable,years = chargement(1)
 
@@ -150,7 +138,7 @@ st.info("Peut être ce que vous cherchez se trouve dans les données inclassable
 file2 = indesirable.to_csv().encode("utf-8")
 
 st.download_button(
-     "Télécharger les indésirables",
+     "Télécharger les inclassables",
      data=file2,
      on_click="ignore",
      mime="text/csv",

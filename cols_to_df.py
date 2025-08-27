@@ -9,6 +9,12 @@ import pandas as pd
 import json 
 import pprint
 
+def isCharInt(chaine):
+     try:
+          int(chaine)
+          return True
+     except:
+          return False
      
 def cols_to_df(matching,listCols):
      """retourne un dataFrame contenant
@@ -19,8 +25,10 @@ def cols_to_df(matching,listCols):
          matching (dictionnaire): matching des colonnes aux tableaus
          listCols (list): liste de colonnes contenues dans le matching.
      """
-     correspondances = [matching[index] for index in listCols ] # ici, les colonnes sont des indexs
-
+     
+     correspondances = [matching[index] for index in listCols if not isCharInt(index)] # ici, les colonnes sont des indexs
+     listCols0 = [col for col in listCols if not isCharInt(col)]
+     listCols = listCols0
      df = pd.DataFrame(
           {
                "Colonne": listCols,
